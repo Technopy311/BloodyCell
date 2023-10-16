@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+
+{% block intitle %}BioGames{% endblock %}
+
+{% block inbody %}
+
+<div class="container">
+
+    <div id="gameCanvas" class="container">
+
+    </div>
+
+</div>
+
+{% load static %}
+<script src="{% static 'core/phaser.min.js' %}"></script>
+
+<script src="{% static 'core/arcade/BootGame.js' %}"></script>
+<script src="{% static 'core/arcade/Core.js' %}"></script>
+<script src="{% static 'core/arcade/MainMenu.js' %}"></script>
+
+
+<script src="{% static 'core/arcade/main.js' %}"></script>
+
+
+{% endblock %}

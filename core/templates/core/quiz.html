@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+
+{% block intitle %}Quiz{% endblock %}
+
+{% block inbody %}
+
+<div class="container-fluid text-center">
+    <h1 style="font-size: 4rem;">
+        Quiz
+    </h1>
+    <h6 style="font-size: 1.4rem;">
+        Veamos quien es el mejor!
+    </h6>
+
+</div>
+
+{% load static %}
+
+<script src="{% static 'core/js/arcade.js' %}"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.js"></script>
+
+
+{% endblock %}

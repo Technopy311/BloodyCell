@@ -2,6 +2,7 @@
 class Core extends Phaser.Scene {
     constructor (){
         super("playGame");
+        this.score = 0;
         this.isClicking = false;
         this.maxAtp = 4;
         this.atpCount = 0 + this.maxAtp;
@@ -10,9 +11,14 @@ class Core extends Phaser.Scene {
         this.healthInitialPos = 700;
     }
 
+    endGame(){
+        console.log(this.score);
+        this.scene.start("GameOver", this.score);
+    }
+
     updateScore(amount){
-        score += amount;
-        scoreText.setText('Puntaje: ' + score);
+        this.score += amount;
+        scoreText.setText('Puntaje: ' + this.score);
         gameSettings.increaseFactor += amount*0.02;
     }
 
@@ -29,7 +35,7 @@ class Core extends Phaser.Scene {
         }else{
             this.healthGroup.remove(this.healthGroup.getLast(true), true);
             this.health--;
-            console.log('game stop!')
+            this.endGame();
         }
     }
       
@@ -87,7 +93,7 @@ class Core extends Phaser.Scene {
     spawnBaddies(){
         if(Math.random() > 0.5){
             let bacillus = this.physics.add.sprite(900, 300, 'bacillus');
-            bacillus.setScale(0.6 + gameSettings.increaseFactor*0.1);
+            bacillus.setScale(0.9 + gameSettings.increaseFactor*0.1);
             this.resetObjectPos(bacillus);
             this.bacilluses.add(bacillus);
             bacillus.play("bacillus_swim");
@@ -185,7 +191,11 @@ class Core extends Phaser.Scene {
         this.physics.add.overlap(this.cell, this.atpGroup, this.hitAtp, null, this);
 
         // GUI
-        scoreText = this.add.text(430, 10, 'Puntaje: 0', {fontSize: '22px', fill: '#FFFFFF'});
+        scoreText = this.add.text(430, 5, 'Puntaje: 0', {
+            fontSize: '30px', 
+            fill: '#FFFFFF',
+            fontFamily: 'Pixeboy',
+        });
 
 
         this.healthGroup = this.add.group();
@@ -206,7 +216,7 @@ class Core extends Phaser.Scene {
 
         this.moveCell();
         
-        if(score%10 === 0 && score > 0){ 
+        if(this.score%10 === 0 && this.score > 0){ 
             this.increaseDifficulty();
         }
 

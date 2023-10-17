@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+
+{% block intitle %}Ranking{% endblock %}
+
+{% block inbody %}
+
+<div class="container-fluid text-center">
+    <h1 style="font-size: 4rem;">
+        ¡Ranking BioGames!
+    </h1>
+    <h6 style="font-size: 1.4rem;">
+        Veamos quien es el mejor!
+    </h6>
+</div>
+
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Estudiante</th>
+                <th scope="col">Curso</th>
+                <th scope="col">Puntaje</th>
+                <th scope="col">Fecha y Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in object_list %}
+            <tr>
+                <th scope="row">{{entry.pk}}</th>
+                <td>{{entry.student}}</td>
+                <td>{{entry.grade}}</td>
+                <td>{{entry.score}}</td>
+                <td>{{entry.date_time}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

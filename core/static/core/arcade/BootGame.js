@@ -15,17 +15,17 @@ class BootGame extends Phaser.Scene {
         this.load.image("energybar", "/static/assets/arcade/energysection.png");
         this.load.spritesheet('estreptococos', '/static/assets/arcade/estreptococoSpritesheet.png',{
           frameWidth: 200,
-          frameHeight: 60,
+          frameHeight: 50,
         });
 
         this.load.spritesheet('cell', '/static/assets/arcade/cellSpriteSheet.png',{
             frameWidth:80,
-            frameHeight: 80,
+            frameHeight: 77,
         });
 
         this.load.spritesheet('bacillus', '/static/assets/arcade/bacillusSpritesheet.png', {
             frameWidth: 32,
-            frameHeight: 25,
+            frameHeight: 21,
         })
         
         this.load.image('whiteHeart', '/static/assets/arcade/whiteGlitchHeart.png');

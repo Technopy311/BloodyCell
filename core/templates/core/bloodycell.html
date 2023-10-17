@@ -1,15 +1,38 @@
 {% extends 'core/base.html' %}
-
+{% load crispy_forms_tags %}
 
 {% block intitle %}BioGames{% endblock %}
 
 {% block inbody %}
 
+<div class="modal" tabindex="-1" id="sendScoreModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{% url 'sendScore' %}" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Subir puntaje</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="score" id="hiddenscore" value="0">
+
+                    {% csrf_token %}
+                    {{ rankingForm|crispy }}
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <div class="container">
 
-    <div id="gameCanvas" class="container">
-
-    </div>
+    <div id="gameCanvas" class="container"></div>
 
 </div>
 
@@ -19,7 +42,7 @@
 <script src="{% static 'core/arcade/BootGame.js' %}"></script>
 <script src="{% static 'core/arcade/Core.js' %}"></script>
 <script src="{% static 'core/arcade/MainMenu.js' %}"></script>
-
+<script src="{% static 'core/arcade/GameOver.js' %}"></script>
 
 <script src="{% static 'core/arcade/main.js' %}"></script>
 

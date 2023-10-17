@@ -9,7 +9,7 @@ var gameSettings = {
 }
 
 var scoreText;
-var score = 0;
+
 
 
 var config = {
@@ -17,7 +17,7 @@ var config = {
     height: 600,
     parent: 'gameCanvas',
     backgroundColor: 0xFFFFFF,
-    scene: [BootGame, MainMenu, Core],
+    scene: [BootGame, MainMenu, Core, GameOver],
     pixelArt: true,
     physics: {
         default: "arcade",

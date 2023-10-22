@@ -33,6 +33,15 @@ class BootGame extends Phaser.Scene {
 
         this.load.image('opacityShader', '/static/assets/arcade/opacityShader.png');
 
+        //Music and SFX
+
+        this.load.audio("BossTime", "/static/assets/arcade/BossTime-FesliyanStudios.mp3");
+        this.load.audio("CyborgNinja", "/static/assets/arcade/cyborgninja-kevinmacleod.mp3");
+        this.load.audio("RetroPlatflorming", "/static/assets/arcade/Retro_Platforming-DavidFesliyan.mp3");
+        this.load.audio("beam", "/static/assets/arcade/BeamMeUp1.mp3");
+        this.load.audio("swirl", "/static/assets/arcade/Swirl2.mp3");
+        this.load.audio("beam2", "/static/assets/arcade/BeamMeUp2.mp3");
+
     }
 
     create() {

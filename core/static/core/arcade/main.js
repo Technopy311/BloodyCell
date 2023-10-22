@@ -1,21 +1,9 @@
-var gameSettings = {
-    increaseFactor: 1,
-    cellSpeed: 12,
-    offsetWidth: 1500,
-    offsetHeight: 800,
-    minHeight: 70,
-    maxHeight: 530
-    
-}
 
 var scoreText;
 
-
-
 var config = {
-    width: 1000,
-    height: 600,
-    parent: 'gameCanvas',
+    width: 1280, // 10:6
+    height: 720,
     backgroundColor: 0xFFFFFF,
     scene: [BootGame, MainMenu, Core, GameOver],
     pixelArt: true,
@@ -27,9 +15,21 @@ var config = {
         }
     },
     scale: {
+        parent: 'gameCanvas',
         mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.HEIGHT_CONTROLS_WIDTH,
+        autocenter: Phaser.Scale.CENTER_BOTH,
     }
+}
+
+
+var gameSettings = {
+    increaseFactor: 1,
+    cellSpeed: 12,
+    offsetWidth: config.width+500,
+    offsetHeight: config.width+200,
+    minHeight: 70,
+    maxHeight: 680
+    
 }
 
 var game = new Phaser.Game(config);

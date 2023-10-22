@@ -8,7 +8,7 @@ class Core extends Phaser.Scene {
         this.atpCount = 0 + this.maxAtp;
         this.healthOffset = 40;
         this.health = 3;
-        this.healthInitialPos = 700;
+        this.healthInitialPos = 900;
     }
 
     endGame(){
@@ -20,10 +20,14 @@ class Core extends Phaser.Scene {
         this.score += amount;
         scoreText.setText('Puntaje: ' + this.score);
         gameSettings.increaseFactor += amount*0.02;
+        if(this.score % 40 == 0){
+            this.addHeart();
+            this.beam2.play();
+        }
     }
 
     addHeart() {
-        let guiHeart = this.add.image((this.healthInitialPos + (this.healthOffset * this.health)), 575, 'whiteHeart').setScale(1.5);
+        let guiHeart = this.add.image((this.healthInitialPos + (this.healthOffset * this.health)), 695, 'whiteHeart').setScale(1.5);
         this.healthGroup.add(guiHeart);
         this.health ++;
     }      
@@ -64,6 +68,7 @@ class Core extends Phaser.Scene {
     hitAtp(cell, atp){
         this.updateScore(1);
         this.resetObjectPos(atp);
+        this.swirl.play();
     }
 
     moveAtp(){
@@ -111,6 +116,8 @@ class Core extends Phaser.Scene {
         this.spawnBaddies();
         this.updateScore(1);
         gameSettings.cellSpeed ++;
+        this.beam2.play();
+
     }
     
     moveCell(){
@@ -139,22 +146,23 @@ class Core extends Phaser.Scene {
         this.resetObjectPos(coco);
         this.updateScore(-1);
         this.removeHeart();
+        this.beam.play();
     }
 
     hitBacillus(cell, bacillus){
         this.resetObjectPos(bacillus);
         this.updateScore(-2);
         this.removeHeart();
-        
+        this.beam.play();
     }
 
     create() {
         // Background
-        this.background = this.add.tileSprite(0, 0, 1000, 600, "background");
+        this.background = this.add.tileSprite(0, 0, config.width, 720, "background");
         this.background.setOrigin(0, 0);
         
-        this.wallTop = this.add.tileSprite(500, 20, 1000, 55, "wall");
-        this.wallBottom = this.add.tileSprite(500, 575, 1000, 55, "wall");
+        this.wallTop = this.add.tileSprite(628, 20, config.width, 55, "wall");
+        this.wallBottom = this.add.tileSprite(628, 700, config.width, 55, "wall");
         
         this.wallBottom.angle = 180;
         this.vesselWalls = this.physics.add.staticGroup();
@@ -197,14 +205,51 @@ class Core extends Phaser.Scene {
             fontFamily: 'Pixeboy',
         });
 
-
-        this.healthGroup = this.add.group();
-
-        
+        this.healthGroup = this.add.group();        
         for(let i=0; i<this.health; i++){
-            let guiHeart = this.add.image(this.healthInitialPos+this.healthOffset*i, 575, 'whiteHeart').setScale(1.5);
+            let guiHeart = this.add.image(this.healthInitialPos+this.healthOffset*i, 695, 'whiteHeart').setScale(1.5);
             this.healthGroup.add(guiHeart);
         }
+
+        // Increase difficulty text alert
+
+        this.diffuptext = this.add.text(600, 5, '[!] SUBE LA DIFICULTAD [!]', {
+            fontSize: '30px',
+            fill: "#FFFFFF",
+            fontFamily: 'Pixeboy',
+        });
+
+        // Yellow : #f7f723
+        // Red : #f72323
+
+        //SFX and Music
+
+        this.beam = this.sound.add("beam");
+        this.swirl = this.sound.add("swirl");
+        this.beam2 = this.sound.add("beam2");
+
+        this.bosstime = this.sound.add("BossTime");
+        this.cyborgninja = this.sound.add("CyborgNinja");
+        this.retroplatforming = this.sound.add("RetroPlatflorming");
+
+        var musicConfig = {
+            mute: false,
+            volume: 1,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0
+        }
+        let ranMusic = Math.random();
+        if( ranMusic < 0.3){
+            this.bosstime.play(musicConfig);
+        } else if( ranMusic > 0.3  && ranMusic < 0.6){
+            this.cyborgninja.play(musicConfig);
+        } else{
+            this.retroplatforming.play(musicConfig);
+        }
+
     }    
 
     update(){

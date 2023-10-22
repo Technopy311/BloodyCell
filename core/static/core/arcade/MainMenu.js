@@ -80,17 +80,17 @@ class MainMenu extends Phaser.Scene{
 
     create(){
         // Background
-        this.background = this.add.tileSprite(0, 0, 1000, 600, "background");
+        this.background = this.add.tileSprite(0, 0, config.width, 720, "background");
         this.background.setOrigin(0, 0);
         
-        this.wallTop = this.add.tileSprite(500, 20, 1000, 55, "wall");
-        this.wallBottom = this.add.tileSprite(500, 575, 1000, 55, "wall");
+        this.wallTop = this.add.tileSprite(628, 20, config.width, 55, "wall");
+        this.wallBottom = this.add.tileSprite(628, 700, config.width, 55, "wall");
         
         this.wallBottom.angle = 180;
-        this.vesselWalls = this.physics.add.group();
+        this.vesselWalls = this.physics.add.staticGroup();
 
         this.vesselWalls.add(this.wallBottom);
-        this.vesselWalls.add(this.wallBottom);
+        this.vesselWalls.add(this.wallTop);
 
         // ATP         
         this.atpGroup = this.physics.add.group();
@@ -119,34 +119,33 @@ class MainMenu extends Phaser.Scene{
 
         this.physics.add.overlap(this.cell, this.atpGroup, this.hitAtp, null, this);
         
-        this.opacityshader = this.add.image(500, 300, 'opacityShader');
+        this.opacityshader = this.add.image(640, 300, 'opacityShader').setScale(1.5);
 
-        this.title = this.add.text(280, 150, 'BLOODY CELL', {
-            fontFamily: 'Pixeboy',
-            fontSize: '90px',
-            fill: '#FFFFFF'
+        this.title = this.add.text(320, 200, 'BLOODY CELL', {
+            fontSize: '140px',
+            fill: '#FFFFFF',
+            fontFamily: 'Pixeboy'
         });
 
-        this.alert = this.add.text(50, 250, "Por favor utilice el dispositivo\n de manera horizontal", {
+        this.alert = this.add.text(100, 250, "Por favor utilice el dispositivo\n de manera horizontal", {
             fill: "white",
             fontSize: "40px",
             fontFamily: 'Pixeboy'
         });
 
 
-        this.startButton = this.add.text(395, 250, '> Jugar <', {
+        this.startButton = this.add.text(475, 400, '> Jugar <', {
             fill: "white",
-            fontSize: "50px",
+            fontSize: "80px",
             fontFamily: 'Pixeboy'
         })
-            .setPadding(5)
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => this.scene.start("playGame"))
             .on('pointerover', () => {
-                this.startButton.setStyle({ fill: '#FFC200', fontSize:"55px" })
+                this.startButton.setStyle({ fill: '#FFC200', fontSize:"85px" })
             })
             .on('pointerout', () => {
-                this.startButton.setStyle({ fill: '#FFFFFF', fontSize:"50px" })
+                this.startButton.setStyle({ fill: '#FFFFFF', fontSize:"80px" })
             })
         }
 

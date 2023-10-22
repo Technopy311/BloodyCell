@@ -70,7 +70,7 @@ class GameOver extends Phaser.Scene {
         let scoreInput = document.getElementById("hiddenscore");
         scoreInput.value = score;
 
-        console.log(scoreInput);
+        //console.log(scoreInput);
     }
 
     displayModal(){
@@ -86,22 +86,22 @@ class GameOver extends Phaser.Scene {
 
     create() {
         // Background
-        this.background = this.add.tileSprite(0, 0, 1000, 600, "background");
+        this.background = this.add.tileSprite(0, 0, config.width, 720, "background");
         this.background.setOrigin(0, 0);
-
-        this.wallTop = this.add.tileSprite(500, 20, 1000, 55, "wall");
-        this.wallBottom = this.add.tileSprite(500, 575, 1000, 55, "wall");
-
+        
+        this.wallTop = this.add.tileSprite(628, 20, config.width, 55, "wall");
+        this.wallBottom = this.add.tileSprite(628, 700, config.width, 55, "wall");
+        
         this.wallBottom.angle = 180;
-        this.vesselWalls = this.physics.add.group();
+        this.vesselWalls = this.physics.add.staticGroup();
 
         this.vesselWalls.add(this.wallBottom);
-        this.vesselWalls.add(this.wallBottom);
+        this.vesselWalls.add(this.wallTop);
 
         // ATP         
         this.atpGroup = this.physics.add.group();
 
-        for (let i = 0; i < this.maxAtp; i++) {
+        for(let i=0; i<this.maxAtp; i++){
             let atpInstance = this.physics.add.sprite(50, 300, "atp").setScale(0.2);
             this.resetObjectPos(atpInstance);
             this.atpGroup.add(atpInstance);
@@ -110,12 +110,13 @@ class GameOver extends Phaser.Scene {
         // Enemies
         this.estreptococoses = this.physics.add.group();
         this.bacilluses = this.physics.add.group();
-
+        
         this.spawnBaddies();
-
+                
         // Player
         this.cell = this.physics.add.sprite(50, 300, "cell").setScale(0.7);
         this.cell.play("cell_living");
+
 
         //Collisions
 
@@ -125,18 +126,18 @@ class GameOver extends Phaser.Scene {
 
         this.physics.add.overlap(this.cell, this.atpGroup, this.hitAtp, null, this);
 
-        this.opacityshader = this.add.image(500, 300, 'opacityShader');
+        this.opacityshader = this.add.image(640, 300, 'opacityShader').setScale(1.5);
 
 
         //TEXTS
 
-        this.title = this.add.text(340, 120, 'Game Over', {
+        this.title = this.add.text(395, 120, 'Game Over', {
             fontFamily: 'Pixeboy',
-            fontSize: '90px',
+            fontSize: '120px',
             fill: '#FFFFFF'
         });
 
-        this.subtitle = this.add.text(380, 230, 'Puntaje: ', {
+        this.subtitle = this.add.text(460, 260, 'Puntaje: ', {
             fontFamily: 'Pixeboy',
             fontSize: '50px',
             fill: '#FFFFFF'
@@ -144,14 +145,14 @@ class GameOver extends Phaser.Scene {
 
         this.updateFormData(this.finalScore);
 
-        this.finalScoreText = this.add.text(580, 230, ''+this.finalScore, {
+        this.finalScoreText = this.add.text(680, 260, ''+this.finalScore, {
             fontFamily: 'Pixeboy',
             fontSize: '50px',
             fill: '#90fff6'
         })
 
 
-        this.playAgain = this.add.text(140, 450, '[> Jugar de nuevo <]', {
+        this.playAgain = this.add.text(200, 500, '[> Jugar de nuevo <]', {
             fill: "white",
             fontSize: "40px",
             fontFamily: 'Pixeboy'
@@ -166,7 +167,7 @@ class GameOver extends Phaser.Scene {
                 this.playAgain.setStyle({ fill: '#FFFFFF', fontSize: "40px" })
             })
 
-        this.sendScoreButton = this.add.text(540, 450, '[> Enviar Puntaje <]', {
+        this.sendScoreButton = this.add.text(710, 500, '[> Enviar Puntaje <]', {
             fill: "white",
             fontSize: "40px",
             fontFamily: 'Pixeboy'

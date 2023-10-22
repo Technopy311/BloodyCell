@@ -45,9 +45,12 @@ class BootGame extends Phaser.Scene {
     }
 
     create() {
-        this.add.text(20, 20, "Cargando juego...", {fill: "black", font: "40px"});
+        this.add.text(100, 300, "Cargando juego...", {
+            fontSize: '30px', 
+            fill: '#000000',
+        });
         
-        let orientation = this.scale.orientation;
+        //let orientation = this.scale.orientation;
 
         this.scene.start("mainMenu");
         

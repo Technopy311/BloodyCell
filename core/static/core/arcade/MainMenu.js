@@ -70,6 +70,10 @@ class MainMenu extends Phaser.Scene{
             this.alert.alpha = 100;
             this.title.alpha = 0;
             this.startButton.alpha = 0;
+            if(this.canContinue === false){
+                this.canContinue = true;
+                alert("Por favor, voltée el dispositivo.");
+            }
         } else if(orientation == Phaser.Scale.LANDSCAPE){
             this.alert.alpha = 0;
             this.title.alpha = 100;
@@ -127,9 +131,9 @@ class MainMenu extends Phaser.Scene{
             fontFamily: 'Pixeboy'
         });
 
-        this.alert = this.add.text(100, 250, "Por favor utilice el dispositivo\n de manera horizontal", {
+        this.alert = this.add.text(80, 250, "Por favor utilice el dispositivo\n de manera horizontal", {
             fill: "white",
-            fontSize: "40px",
+            fontSize: "80px",
             fontFamily: 'Pixeboy'
         });
 

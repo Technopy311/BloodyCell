@@ -5,6 +5,6 @@ from django.contrib import admin
 from .models import RankingEntry
 
 class RankingAdmin(admin.ModelAdmin):
-    fields = ["student", "grade", "score", "date_time"]
+    fields = ["student", "grade", "score"]
 
 admin.site.register(RankingEntry, RankingAdmin)

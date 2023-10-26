@@ -9,11 +9,13 @@
     <h1 style="font-size: 4rem;">
         ¡Ranking BioGames!
     </h1>
-    <h6 style="font-size: 1.4rem;">
-        Veamos quien es el mejor!
+    <br>
+    <h6 style="font-size: 2.4rem;">
+        TOP 10 MEJORES JUGADORES!
     </h6>
 </div>
 
+<br><br>
 
 <div class="container">
     <table class="table">
@@ -29,7 +31,7 @@
         <tbody>
             {% for entry in object_list %}
             <tr>
-                <th scope="row">{{entry.pk}}</th>
+                <th scope="row">{{forloop.counter}}</th>
                 <td>{{entry.student}}</td>
                 <td>{{entry.grade}}</td>
                 <td>{{entry.score}}</td>
@@ -38,5 +40,13 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
+
+<br><br>
+
+<div class="container-fluid text-center">
+    <a class="btn btn-primary" href="{% url 'bloodycell' %}#gameCanvas">
+        <h5>Volver a jugar!</h5>
+    </a>
 </div>
 {% endblock %}

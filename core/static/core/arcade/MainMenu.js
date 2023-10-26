@@ -87,8 +87,8 @@ class MainMenu extends Phaser.Scene{
         this.background = this.add.tileSprite(0, 0, config.width, 720, "background");
         this.background.setOrigin(0, 0);
         
-        this.wallTop = this.add.tileSprite(628, 20, config.width, 55, "wall");
-        this.wallBottom = this.add.tileSprite(628, 700, config.width, 55, "wall");
+        this.wallTop = this.add.tileSprite(640, 20, config.width, 55, "wall");
+        this.wallBottom = this.add.tileSprite(640, 700, config.width, 55, "wall");
         
         this.wallBottom.angle = 180;
         this.vesselWalls = this.physics.add.staticGroup();

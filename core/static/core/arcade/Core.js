@@ -20,7 +20,7 @@ class Core extends Phaser.Scene {
         this.score += amount;
         scoreText.setText('Puntaje: ' + this.score);
         gameSettings.increaseFactor += amount*0.02;
-        if(this.score % 40 == 0){
+        if(this.score % 40 == 0 && this.score >0){
             this.addHeart();
             this.beam2.play();
         }
@@ -121,7 +121,7 @@ class Core extends Phaser.Scene {
     }
     
     moveCell(){
-        if(!this.input.activePointer.isDown && this.isClicking == true){
+        if(!this.input.activePointer.isDown && this.isClicking == true && this.input.activePointer.position.y < 680 && this.input.activePointer.position.y > 50){
             this.cell.setData('positionY', this.input.activePointer.position.y);    
             this.isClicking = false;            
         } else if(this.input.activePointer.isDown && this.isClicking == false){
@@ -161,14 +161,16 @@ class Core extends Phaser.Scene {
         this.background = this.add.tileSprite(0, 0, config.width, 720, "background");
         this.background.setOrigin(0, 0);
         
-        this.wallTop = this.add.tileSprite(628, 20, config.width, 55, "wall");
-        this.wallBottom = this.add.tileSprite(628, 700, config.width, 55, "wall");
+        this.wallTop = this.add.tileSprite(640, 20, config.width, 55, "wall");
+        this.wallBottom = this.add.tileSprite(640, 700, config.width, 55, "wall");
         
         this.wallBottom.angle = 180;
         this.vesselWalls = this.physics.add.staticGroup();
 
         this.vesselWalls.add(this.wallBottom);
         this.vesselWalls.add(this.wallTop);
+
+        
 
         // ATP         
         this.atpGroup = this.physics.add.group();

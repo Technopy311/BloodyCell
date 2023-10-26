@@ -13,6 +13,7 @@ def index(request):
 
 class RankingList(ListView):
     model = RankingEntry
+    queryset = RankingEntry.objects.order_by('-score')[:10]
 
 
 def bloodycell(request):

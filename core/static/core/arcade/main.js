@@ -1,4 +1,3 @@
-
 var scoreText;
 
 var config = {
@@ -14,6 +13,9 @@ var config = {
             debug: false,
             debugShowVelocity: false
         }
+    },
+    scale: {
+        mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
     },
     
 }

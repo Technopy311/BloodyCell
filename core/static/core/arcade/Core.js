@@ -230,7 +230,6 @@ class Core extends Phaser.Scene {
         this.swirl = this.sound.add("swirl");
         this.beam2 = this.sound.add("beam2");
 
-        
 
         var musicConfig = {
             mute: false,
@@ -244,13 +243,13 @@ class Core extends Phaser.Scene {
         let ranMusic = Math.random();
         if (ranMusic < 0.3) {
             this.bosstime = this.sound.add("BossTime");
-            this.bosstime.play();
-        } else if (ranMusic > 0.3 && ranMusic < 0.6) {
+            this.bosstime.play(musicConfig);
+        } else if (ranMusic >= 0.3 && ranMusic < 0.6) {
             this.ninja = this.sound.add("CyborgNinja");
-            this.ninja.play();
+            this.ninja.play(musicConfig);
         } else {
             this.retroplatforming = this.sound.add("RetroPlatflorming");
-            this.retroplatforming.play();
+            this.retroplatforming.play(musicConfig);
         }
 
         

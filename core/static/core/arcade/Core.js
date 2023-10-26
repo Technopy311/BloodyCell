@@ -224,14 +224,6 @@ class Core extends Phaser.Scene {
         // Yellow : #f7f723
         // Red : #f72323
 
-        this.input.addDownCallback(function() {
-				
-            if (game.sound.context.state === 'suspended') {
-                game.sound.context.resume();
-            }
-            
-        });
-
         //SFX and Music
 
         this.beam = this.sound.add("beam");
@@ -247,7 +239,7 @@ class Core extends Phaser.Scene {
             volume: 1,
             rate: 1,
             detune: 0,
-            seek: 0,
+            //seek: 0,
             loop: false,
             delay: 0
         }
@@ -260,7 +252,13 @@ class Core extends Phaser.Scene {
             this.retroplatforming.play(musicConfig);
         }
 
-        
+        this.input.addDownCallback(function() {
+				
+            if (game.sound.context.state === 'suspended') {
+                game.sound.context.resume();
+            }
+            
+        });
 
 
     }    

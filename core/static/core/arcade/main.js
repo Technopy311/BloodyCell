@@ -7,6 +7,7 @@ var config = {
     backgroundColor: 0xFFFFFF,
     scene: [BootGame, MainMenu, Core, GameOver],
     pixelArt: true,
+    parent: 'gameCanvas',
     physics: {
         default: "arcade",
         arcade: {
@@ -14,11 +15,7 @@ var config = {
             debugShowVelocity: false
         }
     },
-    scale: {
-        parent: 'gameCanvas',
-        mode: Phaser.Scale.FIT,
-        autocenter: Phaser.Scale.CENTER_BOTH,
-    }
+    
 }
 
 

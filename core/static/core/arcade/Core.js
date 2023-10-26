@@ -252,13 +252,7 @@ class Core extends Phaser.Scene {
             this.retroplatforming.play(musicConfig);
         }
 
-        this.input.addDownCallback(function () {
-
-            if (game.sound.context.state === 'suspended') {
-                game.sound.context.resume();
-            }
-
-        });
+        
 
 
     }

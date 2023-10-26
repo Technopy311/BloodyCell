@@ -16,6 +16,7 @@ var config = {
     },
     scale: {
         mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
+        //xd
     },
     
 }
